@@ -1,1 +1,2 @@
 # Laravel_sample
+ドットインストールで勉強しながら作成したLaravelのサンプル
