@@ -10,7 +10,7 @@
     <h1>Blog Posts</h1>
     <ul>
       {{--
-      @foreach ($posts as $post)
+      @foreach ($posts as $title)
       <li><a href="">{{ $post->title }}</a></li>
       @endforeach
       --}}
