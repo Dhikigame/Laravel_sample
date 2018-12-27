@@ -18,5 +18,18 @@ class PostsController extends Controller
         // $post = Post::find($id);
         // $post = Post::findOrFail($id);
         return view('posts.show')->with('post', $post);
+    }
+
+    public function create() {
+        return view('posts.create');
+    }
+    //フォームから送信されたデータはRequest型で受け取る
+    public function store(Request $request) {
+        $post = new Post();
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->save();
+        //Modelにタイトルと内容のデータが保存され、indexにそのままリダイレクト
+        return redirect('/');
       }
 }
