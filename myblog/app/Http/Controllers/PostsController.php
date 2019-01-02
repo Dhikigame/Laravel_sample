@@ -25,6 +25,10 @@ class PostsController extends Controller
     }
     //フォームから送信されたデータはRequest型で受け取る
     public function store(Request $request) {
+        $this->validate($request, [
+            'title' => 'required|min:3',
+            'body' => 'required'
+          ]);
         $post = new Post();
         $post->title = $request->title;
         $post->body = $request->body;
