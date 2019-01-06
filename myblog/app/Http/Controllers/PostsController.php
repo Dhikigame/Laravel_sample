@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
-use App\Http\Requests\PostRequest;
 
 class PostsController extends Controller
 {
@@ -26,7 +25,12 @@ class PostsController extends Controller
     }
 
     //フォームから送信されたデータはRequest型で受け取る
-    public function store(PostRequest $request) {
+    public function store(Request $request) {
+        //バリデーションの設定でtitleに3文字以上かつbodyに文字が含まれているか調べ、なければerrorsにエラーメッセージが格納
+        $this->validate($request, [
+            'title' => 'required|min:3',
+            'body' => 'required'
+          ]);
         $post = new Post();
         $post->title = $request->title;
         $post->body = $request->body;
@@ -39,7 +43,11 @@ class PostsController extends Controller
         return view('posts.edit')->with('post', $post);
     }
 
-    public function update(PostRequest $request, Post $post) {
+    public function update(Request $request, Post $post) {
+        $this->validate($request, [
+          'title' => 'required|min:3',
+          'body' => 'required'
+        ]);
         $post->title = $request->title;
         $post->body = $request->body;
         $post->save();
