@@ -1,6 +1,5 @@
 (function() {
     'use strict';
-  
     var cmds = document.getElementsByClassName('del');
     var i;
   
